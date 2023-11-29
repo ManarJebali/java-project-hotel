@@ -1,16 +1,16 @@
 import java.util.Arrays;
 import java.util.Date;
 public class Room {
-    static int nbD;
     private int Rnum;
     private Categorie c;
     private int state;
+    private int nbLits;
 
-    public Room(int rnum,Categorie c) {
+    public Room(int rnum,Categorie c,int nbLits) {
         Rnum = rnum;
-        nbD=0;
         this.c=c;
         state=0;
+        this.nbLits=nbLits;
     }
 
     public int getRnum() {
@@ -29,26 +29,25 @@ public class Room {
         this.state = state;
     }
 
+    public int getNbLits() {
+        return nbLits;
+    }
+
+    public void setNbLits(int nbLits) {
+        this.nbLits = nbLits;
+    }
+
     public Categorie getC() {return c;}
 
     public void setC(Categorie c) {this.c = c;}
 
-    public static int getNbD() {return nbD;}
-
-    public static void setNbD(int nbD) {Room.nbD = nbD;}
-
-    public Date[] getD() {return D;}
 
     @Override
     public String toString() {
         return "Room{" +
-                "Rnum=" + Rnum +
-                ", c=" + c +
-                ", D=" + Arrays.toString(D) +
+                "Num=" + Rnum +
+                ", Categorie=" + c +
+                ", Etat=" + state+
                 '}';
-    }
-    public void addDate(Date d){
-        D[nbD-1]=d;
-        nbD++;
     }
 }
