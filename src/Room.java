@@ -5,12 +5,16 @@ public class Room {
     private Categorie c;
     private int state;
     private int nbLits;
+    private Date[] D;
+    static int nbD;
 
     public Room(int rnum,Categorie c,int nbLits) {
         Rnum = rnum;
         this.c=c;
         state=0;
         this.nbLits=nbLits;
+        D=new Date[100];
+        nbD=0;
     }
 
     public int getRnum() {
@@ -41,6 +45,10 @@ public class Room {
 
     public void setC(Categorie c) {this.c = c;}
 
+    public Date[] getD() {
+        return D;
+    }
+
 
     @Override
     public String toString() {
@@ -49,5 +57,17 @@ public class Room {
                 ", Categorie=" + c +
                 ", Etat=" + state+
                 '}';
+    }
+    public boolean existD(Date d){
+        int i=0;
+        while( i<nbD && !( d.equals(D[i]) ) ){
+            i++;
+        }
+        return i<nbD;
+    }
+    public void addDate(Date d){
+        D[nbD-1]=d;
+        nbD++;
+
     }
 }

@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Categorie {
-    static int nbR;
+    private int nbR;
     private int nbEq;
     private String Cname;
     private double priceR;
@@ -30,33 +30,32 @@ public class Categorie {
         this.nbEq = nbEq;
     }
 
-    public static int getNbR(){
+    public int getNbR(){
         return nbR;
     }
 
-    public static void setNbR(int nbR) {
-        Categorie.nbR = nbR;
-    }
+    public void setNbR(int nbR) {this.nbR = nbR;}
 
-    public String getCname() {
-        return Cname;
-    }
+    public String getCname() {return Cname;}
 
     public int getNbEq() {
         return nbEq;
     }
 
 
-    public double getPriceR() {
-        return priceR;
-    }
+    public double getPriceR() {return priceR;}
 
-    public void setPriceR(double priceR) {
-        this.priceR = priceR;
-    }
+    public void setPriceR(double priceR) {this.priceR = priceR;}
 
     public void setCname(String cname) {
-        Cname = cname;
+        Cname = cname;}
+
+    public Room[] getR() {
+        return R;
+    }
+
+    public void setR(Room[] r) {
+        R = r;
     }
 
     @Override

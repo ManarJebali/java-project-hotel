@@ -7,8 +7,6 @@ public class Hotel{
     String heureOverture;
     String heureFermeture;
     String address;
-    Reservation [] Res;
-    static int nbRes;
 
     public Hotel(String name,String hOuv, String hFerm, String address)
     {
@@ -17,8 +15,6 @@ public class Hotel{
         this.heureOverture = hOuv;
         this.heureFermeture = hFerm;
         C = new Categorie[100];
-        Res=new Reservation[200];
-        int nbRes = 0;
         nbCatg=0;
         }
 

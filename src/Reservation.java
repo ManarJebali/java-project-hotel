@@ -1,11 +1,11 @@
 import java.util.Date;
 public class Reservation {
-    private Client Resp;
+    private clientResponsable Resp;
     private double numRes;
     private Date dArrivee;
     private Date dDepart;
     private int period;
-    public Reservation(double n,Client resp,Date d1, Date d2,int p) {
+    public Reservation(double n,clientResponsable resp,Date d1, Date d2,int p) {
         numRes=n;
         Resp = resp;
         dArrivee=d1;
@@ -13,11 +13,11 @@ public class Reservation {
         period=p;
     }
 
-    public Client getResp() {
+    public clientResponsable getResp() {
         return Resp;
     }
 
-    public void setResp(Client resp) {
+    public void setResp(clientResponsable resp) {
         Resp = resp;
     }
 
