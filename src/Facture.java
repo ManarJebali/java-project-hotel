@@ -3,14 +3,12 @@ import java.util.Date;
 public class Facture {
     private int numF;
     private Date dF;
-    private Consommation [] cF;
     private clientResponsable Cr;
     private double remise;
 
-    public Facture(int numF, Date dF, Consommation[] cF, clientResponsable cr, double remise){
+    public Facture(int numF, Date dF, clientResponsable cr, double remise){
         this.numF = numF;
         this.dF = dF;
-        this.cF = cF;
         Cr = cr;
         this.remise = remise;
     }
@@ -29,14 +27,6 @@ public class Facture {
         this.dF = dF;
     }
 
-    public Consommation[] getcF() {
-        return cF;
-    }
-
-    public void setcF(Consommation[] cF) {
-        this.cF = cF;
-    }
-
     public clientResponsable getCr() {
         return Cr;
     }
@@ -53,10 +43,21 @@ public class Facture {
         this.remise = remise;
     }
 
-    public void calculFacture(){
+    public double calculFacture(){
         double s=0;
+        //parcours des chambres
         for(int i=0;i<Cr.getNbr();i++){
-
+            Room room=Cr.getRooms()[i];
+            //parcours des services
+            for(int j=0;j<room.getNbCons();j++){
+                Consommation service=room.getCons()[j];
+                s+=service.getPrice();
+            }
         }
+        return s;
+    }
+
+    public void displayBill(){
+
     }
 }

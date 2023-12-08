@@ -11,8 +11,8 @@ public class ReservationCategorie extends Reservation {
     private Categorie cat;
     private clientResponsable Cr;
 
-    public ReservationCategorie(double n, clientResponsable resp, Date d1, Date d2, int p, Categorie c) {
-        super(n, resp, d1, d2, p);
+    public ReservationCategorie(double num, clientResponsable resp, Date d1, Date d2, int p, Categorie c) {
+        super(num, resp, d1, d2, p);
         cat = c;
     }
 
@@ -29,13 +29,16 @@ public class ReservationCategorie extends Reservation {
         return l;
     }
 
-    public void addRes(Room R) {
+    public void addRes() {
         if (getPeriod() == 1) {
             for (int i = 0; i < cat.getNbR(); i++) {
                 if (cat.getR()[i].existD(getdArrivee())) {
                     //exception
                 } else {
-                    cat.getR()[i].addDate(this.getdArrivee());
+                    Room room=cat.getR()[i];
+                    room.addDate(this.getdArrivee());
+                    Cr.addRoom(room);
+                    Cr.addReservation(this);
                 }
             }
         } else {
@@ -47,7 +50,7 @@ public class ReservationCategorie extends Reservation {
             Date date=getdArrivee();
             boolean v = false;
             int i = 0;
-            while (i < cat.getNbR() && v == false) {
+            while (i < cat.getNbR() && v==false) {
 
                 while (listIterator.hasNext() && !cat.getR()[i].existD(date)) {
                     LocalDate d = listIterator.next();
@@ -61,6 +64,9 @@ public class ReservationCategorie extends Reservation {
             if (v) {
                 //ajout de reservation a la table de res du client responsable
                 Cr.addReservation(this);
+                Cr.addRoom(cat.getR()[i]);
+
+                //ajout des dates
                 cat.getR()[i].addDate(getdArrivee());
                 while (listIterator.hasNext()) {
                     // Convert LocalDate to Date

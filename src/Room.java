@@ -6,7 +6,9 @@ public class Room {
     private int state;
     private int nbLits;
     private Date[] D;
-    static int nbD;
+    private int nbD;
+    private Consommation Cons[];
+    private int nbCons;
 
     public Room(int rnum,Categorie c,int nbLits) {
         Rnum = rnum;
@@ -15,6 +17,8 @@ public class Room {
         this.nbLits=nbLits;
         D=new Date[100];
         nbD=0;
+        Cons=new Consommation[50];
+        nbCons=0;
     }
 
     public int getRnum() {
@@ -49,6 +53,26 @@ public class Room {
         return D;
     }
 
+    public Consommation[] getCons() {
+        return Cons;
+    }
+
+
+    public int getNbD() {
+        return nbD;
+    }
+
+    public void setNbD(int nbD) {
+        this.nbD = nbD;
+    }
+
+    public int getNbCons() {
+        return nbCons;
+    }
+
+    public void setNbCons(int nbCons) {
+        this.nbCons = nbCons;
+    }
 
     @Override
     public String toString() {
@@ -68,6 +92,10 @@ public class Room {
     public void addDate(Date d){
         D[nbD-1]=d;
         nbD++;
+    }
 
+    public void addCons(Consommation c){
+        Cons[nbCons]=c;
+        nbCons++;
     }
 }

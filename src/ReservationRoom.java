@@ -31,6 +31,8 @@ public class ReservationRoom extends Reservation{
             }
             else{
             R.addDate(this.getdArrivee());
+            C.addRoom(R);
+            C.addReservation(this);
         }}
         else{
             //les dates entre dArrivee et dDepart
@@ -51,6 +53,9 @@ public class ReservationRoom extends Reservation{
             }
             //ajout de reservation a la table de res du client responsable
             C.addReservation(this);
+            C.addRoom(this.R);
+
+            //ajout des dates
             R.addDate(getdArrivee());
             while(listIterator.hasNext()){
                 // Convert LocalDate to Date
