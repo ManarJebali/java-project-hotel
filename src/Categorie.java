@@ -1,24 +1,30 @@
 import java.util.Arrays;
 
+/*class  EquipmentExistException extends Exception{
+    public EquipmentExistException(String message){
+        super(message);
+    }
+}*/
 public class Categorie {
     private int nbR;
     private int nbEq;
     private String Cname;
     private double priceR;
     String[] equipments;
-    Room[] R;
+    Room[] R ;
 
     public Categorie(String cname, double pricer, int nbeq, String[] equipments) {
         Cname = cname;
         priceR = pricer;
-        R = new Room[100];
         nbR = 0;
         nbEq = nbeq;
-        equipments = new String[nbEq];
-        for (int i = 0; i < nbeq; i++) {
-            assert this.equipments != null;
-            //exception if nbeq==0
-            this.equipments[i] = equipments[i];
+        R = new Room[100];
+        this.equipments = new String[10];
+        if (nbEq!=0) {
+            for (int i = 0; i < nbEq; i++) {
+                //exception if nbeq==0
+                equipments[i] = equipments[i];
+            }
         }
     }
 
@@ -57,6 +63,20 @@ public class Categorie {
     public void setR(Room[] r) {
         R = r;
     }
+    public void displayEquipments(){
+        if (nbEq!=0) {
+            for (int i = 0; i < nbEq; i++) {
+                System.out.println(equipments[i]+" ") ;
+            }
+        }
+    }
+    public void displayRooms(){
+        if (nbEq!=0) {
+            for (int i = 0; i < nbR; i++) {
+                System.out.println(R[i]+" ") ;
+            }
+        }
+    }
 
     @Override
     public String toString() {
@@ -64,17 +84,13 @@ public class Categorie {
                 "Name=" + Cname+
                 ", nbEquipments=" + nbEq+ '\'' +
                 ", Rooms' Price=" + priceR +
-                ", Rooms Equipments=" + Arrays.toString(equipments) +
-                ", Rooms=" + Arrays.toString(R) +
                 '}';
     }
 
-    public void addRoom(Room r){
-        if (nbEq==equipments.length){
-            //exception
-        }
+    public void addRoom(Room r) throws RoomExistException{
         if (exist(r)){
             //exception
+            throw new RoomExistException("Room Already Exists");
         }
         else{
             this.R[nbR]=r;

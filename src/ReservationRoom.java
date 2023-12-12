@@ -24,15 +24,20 @@ public class ReservationRoom extends Reservation{
         }
         return l;
         }
-    public void addRes(Room R){
+    public void addRes(Room R) throws RoomNotAvailableException,RoomExistException{
         if(getPeriod()==1){
             if(R.existD(getdArrivee())){
                 //exception
+                throw new RoomNotAvailableException("The Room is Not available at that Date");
             }
             else{
             R.addDate(this.getdArrivee());
+            if (C.exist(R)){
+                throw new RoomExistException("Room already exists");
+                }
+            else {
             C.addRoom(R);
-            C.addReservation(this);
+            C.addReservation(this);}
         }}
         else{
             //les dates entre dArrivee et dDepart

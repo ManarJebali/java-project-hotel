@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Facture {
     private int numF;
@@ -56,8 +57,16 @@ public class Facture {
         }
         return s;
     }
+    public void displayBill() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public void displayBill(){
+        System.out.println("Bill Information:");
+        System.out.println("Number: " + numF);
+        System.out.println("Date: " + dateFormat.format(dF));
+        System.out.println("Client Responsable: " + Cr.getNom()); // Assuming ClientResponsable has a getName() method
+        System.out.println("Remise: " + remise);
 
+        // Add any other relevant information you want to display
     }
 }
+

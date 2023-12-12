@@ -7,6 +7,12 @@ import java.util.ListIterator;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
+class  RoomNotAvailableException extends Exception{
+    public RoomNotAvailableException(String message){
+        super(message);
+    }
+}
+
 public class ReservationCategorie extends Reservation {
     private Categorie cat;
     private clientResponsable Cr;
@@ -29,16 +35,21 @@ public class ReservationCategorie extends Reservation {
         return l;
     }
 
-    public void addRes() {
+    public void addRes() throws RoomNotAvailableException,RoomExistException {
         if (getPeriod() == 1) {
             for (int i = 0; i < cat.getNbR(); i++) {
                 if (cat.getR()[i].existD(getdArrivee())) {
                     //exception
+                    throw new RoomNotAvailableException("The Room is Not available at that Date");
                 } else {
                     Room room=cat.getR()[i];
                     room.addDate(this.getdArrivee());
+                    if (Cr.exist(room)){
+                        throw new RoomExistException("Room already exists");
+                    }
+                    else{
                     Cr.addRoom(room);
-                    Cr.addReservation(this);
+                    Cr.addReservation(this);}
                 }
             }
         } else {

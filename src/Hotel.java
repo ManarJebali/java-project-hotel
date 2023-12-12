@@ -1,5 +1,15 @@
 import java.util.Arrays;
 
+class  RoomExistException extends Exception{
+    public RoomExistException(String message){
+        super(message);
+    }
+}
+class  CategoryExistException extends Exception{
+    public CategoryExistException(String message){
+        super(message);
+    }
+}
 public class Hotel{
     static int nbCatg;
     private String name;
@@ -51,9 +61,10 @@ public class Hotel{
         return address;
     }
 
-    public void addCategory(Categorie c) {
+    public void addCategory(Categorie c) throws CategoryExistException {
         if(exist(c)){
             //exception
+            throw new CategoryExistException("Category already exists");
         }
         else{
             this.C[nbCatg]=c;

@@ -29,13 +29,8 @@ public class clientResponsable extends Client{
     }
 
     public void addReservation(Reservation r){
-        if(existR(r)){
-            //exception
-        }
-        else{
             Res[nbr]=r;
             nbr++;
-        }
     }
     public boolean existR(Reservation r){
         int i=0;
@@ -44,13 +39,8 @@ public class clientResponsable extends Client{
         }
         return i<nbr;
     }
-    public void addRoom(Room r){
-        if (exist(r)){
-            //exception
-        }
-        else{
+    public void addRoom(Room r) {
             this.rooms[nbr]=r;
-        }
     }
     boolean exist(Room r){
         int i=0;
